@@ -10,7 +10,6 @@ clientLambda = boto3.client('lambda', region_name='ap-northeast-1')
 
 application_id = os.environ.get('RAKUTEN_APPID')
 CATEGORY_LIST = ["30","31","32","36","37","38","39","14","15"]
-user_id = "U6576e4dfcbd7d17071d890c3c481471a"
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
