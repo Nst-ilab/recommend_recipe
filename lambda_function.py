@@ -11,6 +11,8 @@ clientLambda = boto3.client('lambda', region_name='ap-northeast-1')
 #api呼び出し時の引数取得
 application_id = os.environ.get('RAKUTEN_APPID')
 CATEGORY_LIST = ["30","31","32","36","37","38","39","14","15"]
+#リスト名
+LIST_NAME = "レシピ配信リスト"
 
 #logging
 logger = logging.getLogger()
@@ -23,6 +25,7 @@ def lambda_handler(event, context):
     # 特定のメッセージを与えられた場合はpush送信する
     lineText = event["lineMessage"]["events"][0]["message"]["text"]
     logger.info(lineText)
+    push_switch = "off"
     if "レシピ" not in lineText :
         return None
     elif lineText == "レシピを皆に送って":
@@ -69,7 +72,7 @@ def get_user_list():
         InvocationType = 'RequestResponse',
         LogType = "Tail",
         # byte形式でPayloadを作って渡す
-        Payload = json.dumps({"key":"recipe_user_list"}).encode("UTF-8")
+        Payload = json.dumps({"key":LIST_NAME}).encode("UTF-8")
     )
     user_list = json.loads(response['Payload'].read().decode())
     logger.info(user_list)
