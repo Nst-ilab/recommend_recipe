@@ -23,7 +23,7 @@
                 "sentences": [
                     {
                         "text": {
-                            "content": "味の素ニュース",
+                            "content": "å³ã®ç´ ãã¥ã¼ã¹",
                             "beginOffset": -1
                         },
                         "sentiment": {
@@ -35,7 +35,7 @@
                 "tokens": [
                     {
                         "text": {
-                            "content": "味",
+                            "content": "å³",
                             "beginOffset": -1
                         },
                         "partOfSpeech": {
@@ -56,11 +56,11 @@
                             "headTokenIndex": 3,
                             "label": "NN"
                         },
-                        "lemma": "味"
+                        "lemma": "å³"
                     },
                     {
                         "text": {
-                            "content": "の",
+                            "content": "ã®",
                             "beginOffset": -1
                         },
                         "partOfSpeech": {
@@ -81,11 +81,11 @@
                             "headTokenIndex": 0,
                             "label": "PRT"
                         },
-                        "lemma": "の"
+                        "lemma": "ã®"
                     },
                     {
                         "text": {
-                            "content": "素",
+                            "content": "ç´ ",
                             "beginOffset": -1
                         },
                         "partOfSpeech": {
@@ -106,11 +106,11 @@
                             "headTokenIndex": 3,
                             "label": "DEP"
                         },
-                        "lemma": "素"
+                        "lemma": "ç´ "
                     },
                     {
                         "text": {
-                            "content": "ニュース",
+                            "content": "ãã¥ã¼ã¹",
                             "beginOffset": -1
                         },
                         "partOfSpeech": {
@@ -131,7 +131,7 @@
                             "headTokenIndex": 3,
                             "label": "ROOT"
                         },
-                        "lemma": "ニュース"
+                        "lemma": "ãã¥ã¼ã¹"
                     }
                 ],
                 "entities": [
@@ -139,7 +139,7 @@
                         "mentions": [
                             {
                                 "text": {
-                                    "content": "味",
+                                    "content": "å³",
                                     "beginOffset": -1
                                 },
                                 "type": "COMMON",
@@ -147,7 +147,7 @@
                             }
                         ],
                         "metadata": {},
-                        "name": "味",
+                        "name": "å³",
                         "type": "OTHER",
                         "salience": 0.5455387234687805,
                         "sentiment": null
@@ -156,7 +156,7 @@
                         "mentions": [
                             {
                                 "text": {
-                                    "content": "素ニュース",
+                                    "content": "ç´ ãã¥ã¼ã¹",
                                     "beginOffset": -1
                                 },
                                 "type": "COMMON",
@@ -164,7 +164,7 @@
                             }
                         ],
                         "metadata": {},
-                        "name": "素ニュース",
+                        "name": "ç´ ãã¥ã¼ã¹",
                         "type": "OTHER",
                         "salience": 0.4544612467288971,
                         "sentiment": null
