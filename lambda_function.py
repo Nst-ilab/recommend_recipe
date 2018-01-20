@@ -8,9 +8,6 @@ import boto3
 #Region指定しないと、デフォルトのUSリージョンが使われる
 clientLambda = boto3.client('lambda', region_name='ap-northeast-1')
 
-#push messageを送信する場合は1、レシピを単に返す場合は0
-PUSH_SWITCH = os.environ.get("PUSH_SWITCH")
-
 #api呼び出し時の引数取得
 application_id = os.environ.get('RAKUTEN_APPID')
 CATEGORY_LIST = ["30","31","32","36","37","38","39","14","15"]
@@ -23,10 +20,13 @@ logger.info('Loading function')
 def lambda_handler(event, context):
 
     # lineのメッセージにレシピが入っていない場合は終了
+    # 特定のメッセージを与えられた場合はpush送信する
     lineText = event["lineMessage"]["events"][0]["message"]["text"]
     logger.info(lineText)
     if "レシピ" not in lineText :
         return None
+    elif lineText == "レシピを皆に送って":
+        push_switch = "on"
     
     # category_idをLISTからランダムに取得し、レシピデータ取得
     category_id = random.choice(CATEGORY_LIST)
@@ -39,7 +39,7 @@ def lambda_handler(event, context):
     message = recipe_title +"はいかがですか？"+"\n詳細は "+recipe_url
     
     # PUSH_SWITCHが1の場合のみ、配信先ユーザーリストを取得し、全ユーザーにメッセージをプッシュ
-    if PUSH_SWITCH == "1":
+    if push_switch == "on":
         user_list = get_user_list()
         for user_id in user_list:
             logger.info(user_id)
