@@ -9,6 +9,7 @@ import boto3
 clientLambda = boto3.client('lambda', region_name='ap-northeast-1')
 
 application_id = os.environ.get('RAKUTEN_APPID')
+user_id = os.environ.get('USER_ID')
 CATEGORY_LIST = ["30","31","32","36","37","38","39","14","15"]
 
 logger = logging.getLogger()
@@ -40,23 +41,21 @@ def lambda_handler(event, context):
     recipe_url = todays_recipe["recipeUrl"]
     message = recipe_title +"はいかがですか？"+"\n詳細は "+recipe_url
     
-    user_list = load_user_list()
+    user_list = get_user_list()
     logger.info(user_list)
     
-    for key,value in user_list.items():
-        logger.info(value)
-        push_message(message,value)
+    push_message(message)
     
     return { "message" : user_list }
     
-def push_message(message,user_id):
+def push_message(message):
         push_message_service = clientLambda.invoke(
         # Calleeのarnを指定
         FunctionName='cloud9-pushMessage-pushMessage-QFAN7KZ9AW5U',
         # RequestResponse = 同期、Event = 非同期 で実行できます
-        InvocationType='RequestResponse',
+        InvocationType='Event',
         # byte形式でPayloadを作って渡す
-        Payload=json.dumps( {"to": user_id, "messages": {"type": "text", "text": message}}).encode("UTF-8")
+def get_us(message):
     )
 
 def get_user_list():
@@ -66,17 +65,9 @@ def get_user_list():
         # RequestResponse = 同期、Event = 非同期 で実行できます
         InvocationType = 'RequestResponse',
         # byte形式でPayloadを作って渡す
-        Payload = json.dumps( {"key":"菊池"}).encode("UTF-8")
+        Payload = json.dumps( {key":"菊池"}).encode("UTF-8")
     )
         logger.info(user_list)
-        return user_list
-        
-        
-def load_user_list():  
-    file_name = "userlist.json"
-    #リアクションサービスのリストは別途Jsonにて管理
-    with open(file_name, "r") as file:
-        user_list = json.load(file)
         return user_list
         
     
